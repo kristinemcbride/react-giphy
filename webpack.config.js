@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   output: {
@@ -9,7 +10,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: '!!html-loader!templates/index.html'
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development')
+      }
+    }),
   ],
   devtool: 'sourcemap',
   mode: "development",
